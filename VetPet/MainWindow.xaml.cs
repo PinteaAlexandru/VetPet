@@ -18,11 +18,23 @@ namespace VetPet
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+
+    enum ActionState
+        {
+    New,
+    Edit,
+    Delete,
+    Nothing }
     public partial class MainWindow : Window
     {
+        ActionState action = ActionState.Nothing;
+        VetPetEntitiesModel ctx = new VetPetEntitiesModel();
+        CollectionViewSource mediciVSource;
         public MainWindow()
         {
             InitializeComponent();
+            DataContext=this;
         }
 
         private void tbCtrlVetPet_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -39,15 +51,92 @@ namespace VetPet
         {
 
             System.Windows.Data.CollectionViewSource mediciViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("mediciViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // mediciViewSource.Source = [generic data source]
+            mediciViewSource =
+                 ((System.Windows.Data.CollectionViewSource)(this.FindResource("meidicViewSource")));
+            mediciViewSource.Source = ctx.medici.Local;
+            ctx.Medici.Load();
             System.Windows.Data.CollectionViewSource programViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("programViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // programViewSource.Source = [generic data source]
+       
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+         
+
+        }
+        private void btnNew_Click(object sender, RoutedEventArgs e)
+        {
+            action = ActionState.New;
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            action = ActionState.Edit;
+        }
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            action = ActionState.Delete;
+        }
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            mediciVScource.View.MoveCurrentToNext();
+        }
+        private void btnPrevious_Click(object sender, RoutedEventArgs e)
+        {
+            mediciVScource.View.MoveCurrentToPrevious();
+        }
+
+        private void SaveMedici()
+        {
+            medici = null;
+            if (action ==ActionState.New)
+            {
+                try
+                {
+                    medici = new Medici()
+                    {
+                        numeColumn = numeTextBox.Text.Trim(),
+                        prenumeColumn = prenumeTextBox.Text.Trim()
+                    };
+                    ctx.Medici.Add(medici);
+                    mediciVSource.View.Refresh();
+                    ctx.SaveChanges;
+
+                }
+                catch(DataException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+     if (action ==ActionState.Edit)
+            {
+                try
+                {
+                    medici=(Medici)medici.SelectedItem;
+                    customer.Nume = numeTextBox.Text.Trim();
+                    customer.Prenume = prenumeTextBox.Text.Trim();
+                    ctx.SaveChanges();
+                }
+                catch(DataException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+    else if(action== ActionState.Delete)
+            {
+                try
+                {
+                    medici = (Medici)mediciDataGrid.SelectedItem;
+                    ctx.Medici.Remove(medici);
+                    ctx.SaveChanges();
+                }
+                catch(DataException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                mediciVScource.View.Refresh();
+            }
 
         }
     }

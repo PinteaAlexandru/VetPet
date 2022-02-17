@@ -12,7 +12,7 @@ namespace VetPetModel
         {
         }
 
-        public virtual DbSet<Medici> Medicis { get; set; }
+        public virtual DbSet<Medici> Medici { get; set; }
         public virtual DbSet<Program> Programs { get; set; }
         public virtual DbSet<Programari> Programaris { get; set; }
         public virtual DbSet<Tratamente> Tratamentes { get; set; }

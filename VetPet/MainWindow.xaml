@@ -21,7 +21,7 @@
             <ColumnDefinition Width="394*"/>
             <ColumnDefinition Width="267*"/>
         </Grid.ColumnDefinitions>
-        <TabControl x:Name="tbCtrlVetPet" Margin="56,122,-66,-122" Grid.ColumnSpan="4" Grid.Column="2" SelectionChanged="tbCtrlVetPet_SelectionChanged_1">
+        <TabControl x:Name="tbCtrlVetPet" Margin="171,91,-225,-77" Grid.ColumnSpan="2" Grid.Column="4" SelectionChanged="tbCtrlVetPet_SelectionChanged_1">
             <TabItem  Header="Program" Margin="45,-3,-49,1" RenderTransformOrigin="1.129,0.727">
                 <Grid Background="#FFE5E5E5" DataContext="{StaticResource programViewSource}">
                     <Grid.ColumnDefinitions>
@@ -107,12 +107,6 @@
                         <Label Content="Prenume:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="2" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
                         <TextBox x:Name="prenumeTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="2" Text="{Binding Prenume, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.ColumnSpan="2"/>
                     </Grid>
-                    <Button Grid.ColumnSpan="3" Content="Button" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="50,57,0,0" VerticalAlignment="Top" Width="92"/>
-                    <Button x:Name="btnNew" Grid.ColumnSpan="3" Content="New" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="50,57,0,0" VerticalAlignment="Top" Width="92"/>
-                    <Button x:Name="btnEdit" Grid.ColumnSpan="3" Content="Edit&#x9;" Grid.Column="3" HorizontalAlignment="Left" Height="25" Margin="50,99,0,0" VerticalAlignment="Top" Width="92"/>
-                    <Button x:Name="btnDelete" Grid.ColumnSpan="3" Content="Delete" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="50,143,0,0" VerticalAlignment="Top" Width="92"/>
-                    <Button x:Name="btnSave" Grid.ColumnSpan="3" Content="Save" Grid.Column="3" HorizontalAlignment="Left" Height="35" Margin="56,292,0,0" VerticalAlignment="Top" Width="86"/>
-                    <Button x:Name="btnCancel" Grid.ColumnSpan="3" Content="Cancel" Grid.Column="3" HorizontalAlignment="Left" Height="24" Margin="56,341,0,0" VerticalAlignment="Top" Width="86"/>
                     <Button x:Name="btnPrev" Content="Previous" Grid.Column="6" HorizontalAlignment="Left" Height="23" Margin="120,241,0,0" VerticalAlignment="Top" Width="89"/>
                     <Button x:Name="btnNext" Content="Next" Grid.Column="7" HorizontalAlignment="Left" Height="23" Margin="22,241,0,0" VerticalAlignment="Top" Width="91"/>
 
@@ -137,6 +131,19 @@
             <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}"/>
 
         </TabControl>
+        <GroupBox x:Name="gbOperations" Grid.ColumnSpan="3" Grid.Column="2" Header="Operations" HorizontalAlignment="Left" Height="200" Margin="10,22,0,0" VerticalAlignment="Top" Width="138">
+            <StackPanel x:Name="spOperations">
+                <Button x:Name="btnNew" Content="New" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="92"/>
+                <Button x:Name="btnEdit" Content="Edit&#x9;" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="92"/>
+                <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="92"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox x:Name="gbActions" Grid.ColumnSpan="3" Grid.Column="2" Header="Actions" HorizontalAlignment="Left" Height="165" Margin="10,227,0,0" VerticalAlignment="Top" Width="125">
+            <StackPanel  x:Name="spActions">
+                <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="86"/>
+                <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="86"/>
+            </StackPanel>
+        </GroupBox>
 
     </Grid>
 </Window>
